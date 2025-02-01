@@ -20,34 +20,30 @@ final class ImagesListViewController: UIViewController {
         formatter.timeStyle = .none
         return formatter
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.rowHeight = 200
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "ShowSingleImage" { // 1
-                guard
-                    let viewController = segue.destination as? SingleImageViewController, // 2
-                    let indexPath = sender as? IndexPath // 3
-                else {
-                    assertionFailure("Invalid segue destination") // 4
-                    return
-                }
 
-                let image = UIImage(named: photosName[indexPath.row]) // 5
-                viewController.imageView.image = image // 6
-            } else {
-                super.prepare(for: segue, sender: sender) // 7
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showSingleImageSegueIdentifier {
+            guard
+                let viewController = segue.destination as? SingleImageViewController,
+                let indexPath = sender as? IndexPath
+            else {
+                assertionFailure("Invalid segue destination")
+                return
             }
+            
+            let image = UIImage(named: photosName[indexPath.row])
+            viewController.image = image
+        } else {
+            super.prepare(for: segue, sender: sender)
         }
-    
-    
-    
-    
+    }
 }
 
 extension ImagesListViewController: UITableViewDataSource {
@@ -84,7 +80,6 @@ extension ImagesListViewController {
 }
 
 extension ImagesListViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     }
@@ -102,4 +97,3 @@ extension ImagesListViewController: UITableViewDelegate {
         return cellHeight
     }
 }
-
