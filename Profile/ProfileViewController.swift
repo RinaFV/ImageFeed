@@ -31,8 +31,6 @@ final class ProfileViewController: UIViewController {
         setFullNameTextLabel()
         setProfileLoginTextLabel()
         setProfileStatusTextLabel()
-        setFavoritesTextLabel()
-        setnoFavoritesPhotoPlaceHolder()
     }
     
     @objc private func setProfileImage() {
@@ -58,13 +56,11 @@ final class ProfileViewController: UIViewController {
             target: self,
             action: #selector(Self.didTapExitButton)
         )
-        exitButton.tintColor = UIColor(named: "#F56B6C")
+        exitButton.tintColor = UIColor(named: "YP Red (iOS)")
         exitButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(exitButton)
         
-        exitButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        exitButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
+        exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
         exitButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
         
         self.exitButton = exitButton
@@ -76,11 +72,9 @@ final class ProfileViewController: UIViewController {
         view.addSubview(fullNameTextLabel)
         fullNameTextLabel.translatesAutoresizingMaskIntoConstraints = false
         fullNameTextLabel.text = "Екатерина Новикова"
-        fullNameTextLabel.textColor = .white
-        fullNameTextLabel.font = .boldSystemFont(ofSize: 23)
+        fullNameTextLabel.textColor = UIColor(named: "YP White (iOS)")
+        fullNameTextLabel.font = .systemFont(ofSize: 23.0, weight: .medium)
         
-        fullNameTextLabel.widthAnchor.constraint(equalToConstant: 235).isActive = true
-        fullNameTextLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
         fullNameTextLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor).isActive = true
         fullNameTextLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
         self.fullNameTextLabel = fullNameTextLabel
@@ -91,12 +85,10 @@ final class ProfileViewController: UIViewController {
         let profileLoginTextLabel = UILabel()
         view.addSubview(profileLoginTextLabel)
         profileLoginTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        profileLoginTextLabel.text = "ekaterina_nov"
-        profileLoginTextLabel.textColor = .white
-        profileLoginTextLabel.font = .systemFont(ofSize: 13)
+        profileLoginTextLabel.text = "@ekaterina_nov"
+        profileLoginTextLabel.textColor = UIColor(named: "YP Gray (iOS)")
+        profileLoginTextLabel.font = .systemFont(ofSize: 13.0, weight: .medium)
         
-        profileLoginTextLabel.widthAnchor.constraint(equalToConstant: 99).isActive = true
-        profileLoginTextLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
         profileLoginTextLabel.leadingAnchor.constraint(equalTo: fullNameTextLabel.leadingAnchor).isActive = true
         profileLoginTextLabel.topAnchor.constraint(equalTo: fullNameTextLabel.bottomAnchor, constant: 8).isActive = true
         self.profileLoginTextLabel = profileLoginTextLabel
@@ -108,44 +100,14 @@ final class ProfileViewController: UIViewController {
         view.addSubview(profileStatusTextLabel)
         profileStatusTextLabel.translatesAutoresizingMaskIntoConstraints = false
         profileStatusTextLabel.text = "Hello, world!"
-        profileStatusTextLabel.textColor = .white
-        profileStatusTextLabel.font = .systemFont(ofSize: 13)
+        profileStatusTextLabel.textColor = UIColor(named: "YP White (iOS)")
+        profileStatusTextLabel.font = .systemFont(ofSize: 13.0, weight: .medium)
         
-        profileStatusTextLabel.widthAnchor.constraint(equalToConstant: 77).isActive = true
-        profileStatusTextLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
         profileStatusTextLabel.leadingAnchor.constraint(equalTo: profileLoginTextLabel.leadingAnchor).isActive = true
         profileStatusTextLabel.topAnchor.constraint(equalTo: profileLoginTextLabel.bottomAnchor, constant: 8).isActive = true
         self.profileStatusTextLabel = profileStatusTextLabel
     }
     
-    private func setFavoritesTextLabel() {
-        guard let profileStatusTextLabel = self.profileStatusTextLabel else { return }
-        let favoritesTextLabel = UILabel()
-        view.addSubview(favoritesTextLabel)
-        favoritesTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        favoritesTextLabel.text = "Избранное"
-        favoritesTextLabel.textColor = .white
-        favoritesTextLabel.font = .boldSystemFont(ofSize: 23)
-        
-        favoritesTextLabel.widthAnchor.constraint(equalToConstant: 129).isActive = true
-        favoritesTextLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
-        favoritesTextLabel.leadingAnchor.constraint(equalTo: profileStatusTextLabel.leadingAnchor).isActive = true
-        favoritesTextLabel.topAnchor.constraint(equalTo: profileStatusTextLabel.bottomAnchor, constant: 24).isActive = true
-        self.favoritesTextLabel = favoritesTextLabel
-    }
-    
-    private func setnoFavoritesPhotoPlaceHolder() {
-        let noFavoritesPhotoPlaceHolder = UIImageView()
-        let FavoritesPhotoImage = UIImage(named: "noPhoto")
-        noFavoritesPhotoPlaceHolder.image = FavoritesPhotoImage
-        noFavoritesPhotoPlaceHolder.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(noFavoritesPhotoPlaceHolder)
-        noFavoritesPhotoPlaceHolder.widthAnchor.constraint(equalToConstant: 115).isActive = true
-        noFavoritesPhotoPlaceHolder.heightAnchor.constraint(equalToConstant: 115).isActive = true
-        noFavoritesPhotoPlaceHolder.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 130).isActive = true
-        noFavoritesPhotoPlaceHolder.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 332).isActive = true
-        self.noFavoritesPhotoPlaceHolder = noFavoritesPhotoPlaceHolder
-    }
     
     @objc private func didTapExitButton() {
     }
